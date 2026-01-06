@@ -23,6 +23,10 @@ hide_title: true
   <a href="https://www.npmjs.com/package/@nozbe/watermelondb">
     <img src="https://img.shields.io/npm/v/@nozbe/watermelondb.svg" alt="npm"/>
   </a>
+
+  <a href="https://gurubase.io/g/watermelondb">
+    <img src="https://img.shields.io/badge/Gurubase-Ask%20WatermelonDB%20Guru-006BFF" alt="Gurubase"/>
+  </a>
 </p>
 
 |   | WatermelonDB |
@@ -35,7 +39,7 @@ hide_title: true
 | ⚛️ | **Optimized for React.** Easily plug data into components |
 | 🧰 | **Framework-agnostic.** Use JS API to plug into other UI frameworks |
 | ⏱ | **Fast.** And getting faster with every release! |
-| ✅ | **Proven.** Powers [Nozbe Teams](https://nozbe.com/teams) since 2017 (and [many others](#who-uses-watermelondb)) |
+| ✅ | **Proven.** Powers [Nozbe](https://nozbe.com/teams) since 2017 (and [many others](#who-uses-watermelondb)) |
 | ✨ | **Reactive.** (Optional) [RxJS](https://github.com/ReactiveX/rxjs) API |
 | 🔗 | **Relational.** Built on rock-solid [SQLite](https://www.sqlite.org) foundation |
 | ⚠️ | **Static typing** with [Flow](https://flow.org) or [TypeScript](https://typescriptlang.org) |
@@ -52,9 +56,9 @@ Watermelon fixes it **by being lazy**. Nothing is loaded until it's requested. A
 
 But unlike using SQLite directly, Watermelon is **fully observable**. So whenever you change a record, all UI that depends on it will automatically re-render. For example, completing a task in a to-do app will re-render the task component, the list (to reorder), and all relevant task counters. [**Learn more**](https://www.youtube.com/watch?v=UlZ1QnFF4Cw).
 
-| <a href="https://www.youtube.com/watch?v=UlZ1QnFF4Cw"><img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/watermelon-talk-thumbnail.jpg" alt="React Native EU: Next-generation React Databases" width="300" /></a> | <a href="https://watermelondb.now.sh/"><img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/watermelon-demo-thumbnail.png" alt="WatermelonDB Demo" width="300" /></a> |
-| ---- | --- |
-| <p align="center"><a href="https://www.youtube.com/watch?v=UlZ1QnFF4Cw">📺 <strong>Next-generation React databases</strong><br/>(a talk about WatermelonDB)</a></p> | <p align="center"><a href="https://watermelondb.now.sh/">✨ <strong>Check out web Demo</strong></a></p> |
+| <a href="https://www.youtube.com/watch?v=UlZ1QnFF4Cw"><img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/watermelon-talk-thumbnail.jpg" alt="React Native EU: Next-generation React Databases" width="300" /></a> |
+| ---- |
+| <p align="center"><a href="https://www.youtube.com/watch?v=UlZ1QnFF4Cw">📺 <strong>Next-generation React databases</strong><br/>(a talk about WatermelonDB)</a></p> |
 
 ## Usage
 
@@ -116,8 +120,8 @@ The result is fully reactive! Whenever a post or comment is added, changed, or r
 
 ## Who uses WatermelonDB
 
-  <a href="https://nozbe.com/teams/">
-    <img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/apps/nozbe-teams.png" alt="Nozbe Teams" width="300" />
+  <a href="https://nozbe.com/?c=watermelon">
+    <img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/apps/nozbe.png" alt="Nozbe Teams" width="300" />
   </a>
 
   <br/>
@@ -194,6 +198,12 @@ The result is fully reactive! Whenever a post or comment is added, changed, or r
 
   <br/>
 
+  <a href="https://learnthewords.app/">
+    <img src="https://github.com/Nozbe/WatermelonDB/raw/master/assets/apps/learn-the-words.png" alt="Learn The Words" width="300" />
+  </a>
+
+  <br/>
+
 _Does your company or app use 🍉? Open a pull request and add your logo/icon with link here!_
 
 ## Contributing
@@ -212,7 +222,7 @@ If you make or are considering making an app using WatermelonDB, please let us k
 
 **WatermelonDB** was created by [@Nozbe](https://github.com/Nozbe).
 
-**WatermelonDB's** main author and maintainer is [Radek Pietruszewski](https://github.com/radex) ([website](https://radex.io) ⋅ [twitter](https://twitter.com/radexp) ⋅ [engineering posters](https://beamvalley.com))
+**WatermelonDB's** main author and maintainer is [Radek Pietruszewski](https://github.com/radex) ([website](https://radex.io) ⋅ [𝕏 (Twitter)](https://twitter.com/radexp))
 
 [See all contributors](https://github.com/Nozbe/WatermelonDB/graphs/contributors).
 

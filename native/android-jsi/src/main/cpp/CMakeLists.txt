@@ -35,7 +35,7 @@ endif()
 if(${ENCRYPTED_DB})
         set(SQLITE_PATH ${NODE_MODULES_PATH_WM}@nozbe/watermelondb/native/sqlite-cipher-amalgamation/)
 else()
-        set(SQLITE_PATH ${NODE_MODULES_PATH_WM}@nozbe/sqlite/sqlite-amalgamation-3400100/)
+        set(SQLITE_PATH ${NODE_MODULES_PATH_WM}@nozbe/sqlite/sqlite-amalgamation-3460000/)
 endif()
 
 include_directories(
@@ -94,6 +94,8 @@ if(${ENCRYPTED_DB})
 endif()
 
 
+# Enable Android 16kb native library alignment
+target_link_options(watermelondb-jsi PRIVATE "-Wl,-z,max-page-size=16384")
 
 target_link_libraries(watermelondb-jsi
                       # link with these libraries:

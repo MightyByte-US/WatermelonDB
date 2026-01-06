@@ -12,7 +12,7 @@ import type {
   SqliteDispatcherOptions,
 } from '../type'
 
-const { WMDatabaseBridge } = NativeModules
+const { WMDatabaseBridge, WMDatabaseJSIBridge } = NativeModules
 
 class SqliteNativeModulesDispatcher implements SqliteDispatcher {
   _tag: ConnectionTag
@@ -91,7 +91,7 @@ class SqliteJsiDispatcher implements SqliteDispatcher {
       const method = this._db[methodName]
       if (!method) {
         throw new Error(
-          `Cannot run database method ${method} because database failed to open. Hint: Did you install JSI correctly? This happens if you forgot to configure Proguard correctly ${Object.keys(
+          `Cannot run database method ${methodName} because database failed to open. Hint: Did you install JSI correctly? This happens if you forgot to configure Proguard correctly ${Object.keys(
             this._db,
           ).join(',')}`,
         )
@@ -143,6 +143,9 @@ const initializeJSI = () => {
       logger.error('[SQLite] Failed to initialize JSI')
       logger.error(e)
     }
+  } else if (WMDatabaseJSIBridge && WMDatabaseJSIBridge.install) {
+    WMDatabaseJSIBridge.install()
+    return !!global.nativeWatermelonCreateAdapter
   }
 
   return false

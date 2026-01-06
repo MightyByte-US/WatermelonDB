@@ -3,7 +3,7 @@
 ### Step 1: Run all automated tests
 
 ```bash
-yarn ci:check && yarn test:ios && yarn test:android && yarn swiftlint && yarn ktlint
+yarn ci:check && yarn test:ios && yarn test:android && yarn ktlint
 ```
 
 ### Step 2: Test manually in a real app
@@ -30,29 +30,3 @@ npm run release --skip-checks
 ```
 
 Don't use `yarn release` (or `yarn publish`) — it won't work (yarn doesn't support NPM 2FA).
-
-### Step 5: Update demo/example code
-
-```bash
-cd examples/native
-yarn upgrade-interactive --latest
-yarn dev
-yarn start:ios
-yarn start:android
-```
-
-web:
-
-```bash
-cd ../web
-yarn upgrade-interactive --latest
-yarn dev
-# check out if web works
-```
-
-Then deploy updated web demo:
-
-```bash
-now
-now alias watermelondb-xxxxxxxxx.now.sh watermelondb
-```

@@ -18,7 +18,7 @@ DerivedData
 *.dSYM.zip
 *.xcuserstate
 project.xcworkspace
-ios/.xcode.env.local
+**/.xcode.env.local
 
 # CocoaPods that are too big to reasonably commit
 **/Pods/boost-for-react-native
@@ -27,6 +27,7 @@ ios/.xcode.env.local
 **/Pods/hermes-engine
 **/Pods/libevent
 **/Pods/Sentry
+**/Pods/hermes-engine-artifacts
 
 # Android/IntelliJ
 #
