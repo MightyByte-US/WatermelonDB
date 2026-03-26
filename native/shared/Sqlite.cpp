@@ -51,6 +51,8 @@ SqliteDb::SqliteDb(std::string path, const char *password) {
         }
         consoleLog("Encryption key set successfully");
     }
+    // NOTE: The `password` parameter is `const char*` pointing to the caller's std::string buffer.
+    // The caller (Database.cpp) is responsible for zeroing the source string after this call returns.
 #endif
     consoleLog("Opened database at " + resolvedPath);
 }

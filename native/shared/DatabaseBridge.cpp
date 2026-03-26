@@ -18,6 +18,11 @@ void Database::install(jsi::Runtime *runtime) {
         jsi::Object adapter(rt);
 
         std::shared_ptr<Database> database = std::make_shared<Database>(runtime, dbPath, password, usesExclusiveLocking);
+
+        // Security: zero the password from memory after use
+        std::fill(password.begin(), password.end(), '\0');
+        password.clear();
+
         adapter.setProperty(rt, "database", jsi::Object::createFromHostObject(rt, database));
 
         // FIXME: Important hack!

@@ -9,6 +9,10 @@ Database::Database(jsi::Runtime *runtime, std::string path, std::string password
 : runtime_(runtime), mutex_() {
     db_ = std::make_unique<SqliteDb>(path, password.c_str());
 
+    // Security: zero the password from memory after use
+    std::fill(password.begin(), password.end(), '\0');
+    password.clear();
+
     std::string initSql = "";
 
 // FIXME: On Android, Watermelon often errors out on large batches with an IO error, because it
