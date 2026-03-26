@@ -30,6 +30,8 @@ SqliteDb::SqliteDb(std::string path, const char *password) {
     if (openResult != SQLITE_OK) {
         if (sqlite) {
             auto error = std::string(sqlite3_errmsg(sqlite));
+            sqlite3_close(sqlite);
+            sqlite = nullptr;
             throw std::runtime_error("Error while trying to open database - " + error);
         } else {
             // whoa, sqlite couldn't allocate memory
