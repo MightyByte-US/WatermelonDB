@@ -6,7 +6,7 @@ def DEFAULT_BUILD_TOOLS_VERSION = "28.0.3"
 def DEFAULT_MIN_SDK_VERSION = 16
 def DEFAULT_TARGET_SDK_VERSION = 28
 def DEFAULT_NDK_VERSION = "20.1.5948944"
-def isUsingEncryptedDB = rootProject.hasProperty('encryptedDB') && rootProject.encryptedDB
+def isUsingEncryptedDB = rootProject.hasProperty('isEncryptedDB') && rootProject.isEncryptedDB
 android {
     compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
     buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
