@@ -157,6 +157,12 @@ export function getDispatcherType(options: SQLiteAdapterOptions): DispatcherType
       return 'jsi'
     }
 
+    if (options.passphrase) {
+      throw new Error(
+        'SQLiteAdapter: Encryption (passphrase) requires JSI, but JSI failed to initialize. The database cannot be opened securely without JSI. Ensure JSI is properly installed and you are not using a remote debugger.',
+      )
+    }
+
     logger.warn(
       `JSI SQLiteAdapter not available… falling back to asynchronous operation. This will happen if you're using remote debugger, and may happen if you forgot to recompile native app after WatermelonDB update`,
     )
