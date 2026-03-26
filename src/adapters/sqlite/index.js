@@ -78,12 +78,10 @@ export default class SQLiteAdapter implements DatabaseAdapter {
       passphrase = null,
     } = options
 
-    if (process.env.NODE_ENV !== 'production') {
-      invariant(
-        !passphrase || options.jsi,
-        'SQLiteAdapter: passphrase (encryption) requires jsi: true in adapter options. Encryption is only supported via JSI, not the legacy NativeModules bridge.',
-      )
-    }
+    invariant(
+      !passphrase || options.jsi,
+      'SQLiteAdapter: passphrase (encryption) requires jsi: true in adapter options. Encryption is only supported via JSI, not the legacy NativeModules bridge.',
+    )
 
     this.schema = schema
     this.migrations = migrations
