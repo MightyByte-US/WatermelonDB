@@ -225,6 +225,18 @@ void Database::install(jsi::Runtime *runtime) {
             database->initialized_ = false;
             return jsi::Value::undefined();
         });
+        createMethod(rt, adapter, "changePassword", 1, [database](jsi::Runtime &rt, const jsi::Value *args) {
+            assert(database->initialized_);
+            std::string newPassword = args[0].getString(rt).utf8(rt);
+            try {
+                database->changePassword(newPassword);
+            } catch (const std::exception &ex) {
+                throw jsi::JSError(rt, ex.what());
+            }
+            // Zero the password from memory
+            std::fill(newPassword.begin(), newPassword.end(), '\0');
+            return jsi::Value::undefined();
+        });
 
         return adapter;
     });

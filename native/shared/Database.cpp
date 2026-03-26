@@ -125,4 +125,12 @@ void Database::migrate(jsi::String &migrationSql, int fromVersion, int toVersion
     }
 }
 
+void Database::changePassword(std::string newPassword) {
+    const std::lock_guard<std::mutex> lock(mutex_);
+    db_->rekey(newPassword.c_str());
+    // Zero the password from memory
+    std::fill(newPassword.begin(), newPassword.end(), '\0');
+    newPassword.clear();
+}
+
 } // namespace watermelondb

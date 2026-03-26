@@ -13,6 +13,7 @@ namespace watermelondb {
 class SqliteDb {
 public:
     SqliteDb(std::string path, const char *password);
+    void rekey(const char *newPassword);
     ~SqliteDb();
     void destroy();
 

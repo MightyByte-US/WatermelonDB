@@ -59,6 +59,27 @@ SqliteDb::SqliteDb(std::string path, const char *password) {
     consoleLog("Opened database at " + resolvedPath);
 }
 
+void SqliteDb::rekey(const char *newPassword) {
+#ifdef SQLITE_HAS_CODEC
+    if (newPassword == nullptr || strlen(newPassword) == 0) {
+        throw std::runtime_error("Cannot rekey database with an empty password");
+    }
+
+    int rc = sqlite3_rekey(sqlite, newPassword, (int)strlen(newPassword));
+    if (rc != SQLITE_OK) {
+        throw std::runtime_error("Failed to rekey database - " + std::string(sqlite3_errmsg(sqlite)));
+    }
+
+    // Verify the rekey worked
+    rc = sqlite3_exec(sqlite, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
+    if (rc != SQLITE_OK) {
+        throw std::runtime_error("Database verification failed after rekey - " + std::string(sqlite3_errmsg(sqlite)));
+    }
+#else
+    throw std::runtime_error("Encryption is not supported in this build");
+#endif
+}
+
 void SqliteDb::destroy() {
     if (isDestroyed_) {
         return;
