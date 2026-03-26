@@ -121,6 +121,7 @@ export default class SQLiteAdapter implements DatabaseAdapter {
       schema: this.schema,
       jsi: this._dispatcherType === 'jsi',
       ...(this.migrations ? { migrations: this.migrations } : {}),
+      ...(this.passphrase ? { passphrase: this.passphrase } : {}),
       ...options,
     })
     invariant(
