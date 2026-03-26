@@ -30,28 +30,28 @@ SqliteDb::SqliteDb(std::string path, const char *password) {
     if (openResult != SQLITE_OK) {
         if (sqlite) {
             auto error = std::string(sqlite3_errmsg(sqlite));
-            throw new std::runtime_error("Error while trying to open database - " + error);
+            throw std::runtime_error("Error while trying to open database - " + error);
         } else {
             // whoa, sqlite couldn't allocate memory
-            throw new std::runtime_error("Error while trying to open database, sqlite is null - " + std::to_string(openResult));
+            throw std::runtime_error("Error while trying to open database, sqlite is null - " + std::to_string(openResult));
         }
     }
     assert(sqlite != nullptr);
 #ifdef SQLITE_HAS_CODEC
     if (password != nullptr && strlen(password) > 0) {
-        consoleLog("##### Will set key...");
+        consoleLog("Setting encryption key...");
         sqlite3_key(sqlite, password, (int)strlen(password));
         int rc = sqlite3_exec(sqlite, "SELECT count(*) FROM sqlite_master;", NULL, NULL, NULL);
         if (rc != SQLITE_OK) {
-            consoleError("Failed to open encrypted database - " + std::string(sqlite3_errmsg(sqlite)));
+            auto error = std::string(sqlite3_errmsg(sqlite));
+            consoleError("Failed to open encrypted database - " + error);
             sqlite3_close(sqlite);
             sqlite = nullptr;
-            throw new std::runtime_error("Failed to open encrypted database - " + std::string(sqlite3_errmsg(sqlite)));
+            throw std::runtime_error("Failed to open encrypted database - " + error);
         }
-        consoleLog("##### Key set!");
+        consoleLog("Encryption key set successfully");
     }
 #endif
-    assert(sqlite != nullptr);
     consoleLog("Opened database at " + resolvedPath);
 }
 
