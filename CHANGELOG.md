@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 Contributors: Please add your changes to CHANGELOG-Unreleased.md
 
+## 0.28.1-1 - 2026-03-26
+
+### New features
+
+- [SQLCipher] Add `changePassword(newPassphrase)` API to change encryption key at runtime (JSI-only)
+- [SQLCipher] Add `sqlite3_rekey` support in native C++ layer with post-rekey verification
+
+### Fixes
+
+- [SQLCipher] Fix use-after-free when encrypted database fails to open
+- [SQLCipher] Fix `throw new` to `throw` in native C++ so exceptions are catchable
+- [SQLCipher] Fix sqlite handle leak on `sqlite3_open` failure
+- [SQLCipher] Zero encryption password from memory after use at all native layers
+- [SQLCipher] Throw error when `passphrase` is used without `jsi: true`
+- [SQLCipher] Forward `passphrase` in `testClone` for encrypted database support
+- [Android] Align gradle property `isEncryptedDB` with docs and iOS podspec
+- [Native] Restore `#include` in shared C++ headers for cross-platform portability
+- [Native] Clean up debug log markers in encryption path
+
+### Internal
+
+- [SQLCipher] Add Node Jest and RN integration tests for encryption
+
 ## 0.28 - 2025-04-07
 
 ### BREAKING CHANGES
