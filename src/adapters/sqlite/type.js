@@ -85,7 +85,9 @@ export type SqliteDispatcherMethod =
   | 'unsafeResetDatabase'
   | 'getLocal'
   | 'unsafeExecuteMultiple'
+  | 'changePassword'
 
 export interface SqliteDispatcher {
   call(methodName: SqliteDispatcherMethod, args: any[], callback: ResultCallback<any>): void;
+  changePassword(password: string): void;
 }

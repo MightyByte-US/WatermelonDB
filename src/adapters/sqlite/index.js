@@ -390,6 +390,17 @@ export default class SQLiteAdapter implements DatabaseAdapter {
     this._dispatcher.call('batch', [[operation]], callback)
   }
 
+  changePassword(newPassphrase: string): void {
+    if (!newPassphrase || newPassphrase.length === 0) {
+      throw new Error('changePassword requires a non-empty passphrase')
+    }
+    if (!this.passphrase) {
+      throw new Error('changePassword can only be called on an encrypted database (one initialized with a passphrase)')
+    }
+    this._dispatcher.changePassword(newPassphrase)
+    this.passphrase = newPassphrase
+  }
+
   _encodedSchema(): SQL {
     return require('./encodeSchema').encodeSchema(this.schema)
   }

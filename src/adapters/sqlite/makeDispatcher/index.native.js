@@ -40,6 +40,10 @@ class SqliteNativeModulesDispatcher implements SqliteDispatcher {
     }
   }
 
+  changePassword(_password: string): void {
+    throw new Error('changePassword is only supported with JSI. Pass { jsi: true } to SQLiteAdapter constructor.')
+  }
+
   call(name: SqliteDispatcherMethod, _args: any[], callback: ResultCallback<any>): void {
     let methodName: string = name
     let args = _args
@@ -64,6 +68,13 @@ class SqliteJsiDispatcher implements SqliteDispatcher {
   constructor(dbName: string, { usesExclusiveLocking, password }: SqliteDispatcherOptions): void {
     this._db = global.nativeWatermelonCreateAdapter(dbName, password ?? '', usesExclusiveLocking)
     this._unsafeErrorListener = () => {}
+  }
+
+  changePassword(password: string): void {
+    if (!password || password.length === 0) {
+      throw new Error('changePassword requires a non-empty password')
+    }
+    this._db.changePassword(password)
   }
 
   call(name: SqliteDispatcherMethod, _args: any[], callback: ResultCallback<any>): void {
