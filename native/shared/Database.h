@@ -1,14 +1,14 @@
 #pragma once
 
-#import <jsi/jsi.h>
-#import <mutex>
-#import <sqlite3.h>
-#import <unordered_map>
-#import <unordered_set>
+#include <jsi/jsi.h>
+#include <mutex>
+#include <sqlite3.h>
+#include <unordered_map>
+#include <unordered_set>
 
 // FIXME: Make these paths consistent across platforms
 #if __ANDROID__
-#import <simdjson.h>
+#include <simdjson.h>
 #elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #include <simdjson.h>
 #else
@@ -16,15 +16,15 @@
 #include <simdjson/simdjson.h>
 #endif
 
-#import "DatabasePlatform.h"
-#import "Sqlite.h"
+#include "DatabasePlatform.h"
+#include "Sqlite.h"
 
 using namespace facebook;
 
 namespace watermelondb {
 
 class Database : public jsi::HostObject {
-    public:
+public:
     static void install(jsi::Runtime *runtime);
     Database(jsi::Runtime *runtime, std::string path, std::string password, bool usesExclusiveLocking);
     ~Database();
@@ -43,7 +43,7 @@ class Database : public jsi::HostObject {
     jsi::Value getLocal(jsi::String &key);
     void executeMultiple(std::string sql);
 
-    private:
+private:
     bool initialized_;
     bool isDestroyed_;
     std::mutex mutex_;
