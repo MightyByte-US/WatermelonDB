@@ -231,6 +231,7 @@ void Database::install(jsi::Runtime *runtime) {
             try {
                 database->changePassword(newPassword);
             } catch (const std::exception &ex) {
+                std::fill(newPassword.begin(), newPassword.end(), '\0');
                 throw jsi::JSError(rt, ex.what());
             }
             // Zero the password from memory
